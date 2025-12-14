@@ -1,0 +1,33 @@
+package com.example.backend.Service;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.example.backend.Repo.DocumentRepository;
+
+import jakarta.annotation.PostConstruct;
+
+
+@Service
+public class DocumentService {
+
+	 private DocumentRepository repository;
+	 private Path uplodeDir;
+	 
+	 public DocumentService(DocumentRepository repository, @Value("${app.uplode-dir:uploads}") String uplodeDir) {
+		 this.repository = repository;
+		 this.uplodeDir = Paths.get(uplodeDir).toAbsolutePath().normalize();
+	 }
+	
+	 
+	 @PostConstruct
+	 public void init() throws IOException{
+		 Files.createDirectories(uplodeDir);
+	 }
+	
+}

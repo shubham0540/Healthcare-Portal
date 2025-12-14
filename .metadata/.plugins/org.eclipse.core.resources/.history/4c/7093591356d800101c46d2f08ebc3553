@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "app.uplode-dir",
+  "type": "java.lang.String",
+  "description": "A description for 'app.uplode-dir'"
+}]}

@@ -1,0 +1,58 @@
+package com.example.backend.Service;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.example.backend.Entity.DocumentMetadata;
+import com.example.backend.Repo.DocumentRepository;
+
+import jakarta.annotation.PostConstruct;
+
+
+@Service
+public class DocumentService {
+
+	 private DocumentRepository repository;
+	 private Path uplodeDir;
+	 
+	 public DocumentService(DocumentRepository repository, @Value("${app.uplode-dir:uploads}") String uplodeDir) {
+		 this.repository = repository;
+		 this.uplodeDir = Paths.get(uplodeDir).toAbsolutePath().normalize();
+	 }
+	
+	 
+	 @PostConstruct
+	 public void init() throws IOException{
+		 Files.createDirectories(uplodeDir);
+	 }
+	 
+	 
+	 public void validatePdf(MultipartFile file) {
+		 if(file == null || file.isEmpty()) {
+			 throw new IllegalArgumentException("File must not be empty");
+		 }
+		 String name = file.getOriginalFilename();
+		 String contentType = file.getContentType();
+		 boolean isPdf = (name != null && name.toLowerCase().endsWith(".pdf")) || "application/pdf".equalsIgnoreCase(contentType);
+		 	if(!isPdf){
+			 throw new IllegalArgumentException("Only PDF files are Allowed");
+		 }
+	 }
+	 public DocumentMetadata save(MultipartFile file) throws IOException{
+		 validatePdf(file);
+		 String originalName = StringUtils.cleanPath(file.getOriginalFilename());
+		 
+		 if(repository.findByname(originalName).isPresent()) {
+			 throw new DuplicateFileExcepiton("Pdf already exists");
+			 
+		 }
+	 }
+	
+}

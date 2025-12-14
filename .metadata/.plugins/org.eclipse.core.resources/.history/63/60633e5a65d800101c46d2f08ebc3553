@@ -1,0 +1,11 @@
+package com.example.backend.Repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.backend.Entity.DocumentMetadata;
+
+public interface DocumentRepository extends JpaRepository<DocumentMetadata, Long> {
+
+	Object findByname(String originalName);
+
+}

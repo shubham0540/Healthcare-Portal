@@ -1,0 +1,13 @@
+package com.example.backend.Controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.backend.Service.DocumentService;
+
+@RestController
+@RequestMapping("/document")
+public class DocumentController {
+	
+	private  DocumentService repository;
+}
