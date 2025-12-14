@@ -18,8 +18,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.NonFinal;
 
 @Entity
-@NoArgsConstructor
-@Data
 @Table(name = "DocumentMetadata")
 public class DocumentMetadata {
 	@Id
@@ -47,6 +45,52 @@ public class DocumentMetadata {
 	    this.filesize = filesize;
 	    this.createdAt = createdAt;
 	}
+	
+	public DocumentMetadata() {
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
+
+	public long getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
+	}
+
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Instant createdAt) {
+		this.createdAt = createdAt;
+	}
+	
+	
 
 
 }
