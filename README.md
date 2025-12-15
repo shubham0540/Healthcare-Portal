@@ -2,6 +2,19 @@
 
 Simple healthcare portal project containing a Java Spring Boot backend and a Vite + React frontend.
 
+## About
+
+This project is a healthcare portal application with the following features:
+
+- **Patient Document Management** — Upload, view, and manage healthcare documents (medical records, prescriptions, test results, etc.)
+- **Secure Backend** — Spring Boot REST API with validation and error handling
+- **Modern Frontend** — React-based user interface built with Vite for fast development and production builds
+- **Database Integration** — MySQL database for persistent storage of document metadata and patient information
+- **File Upload Support** — Handle multiple file uploads with size restrictions (up to 10MB per file, 10MB per request)
+- **CORS Support** — Cross-Origin Resource Sharing configuration for seamless frontend-backend communication
+- **Auto Database Creation** — MySQL database automatically created if it doesn't exist
+- **Responsive Design** — Clean and intuitive UI for easy navigation and document access
+
 ## Structure
 - `backend/` — Spring Boot application (Maven)
 - `frontend/` — Vite + React client
